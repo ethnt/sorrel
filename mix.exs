@@ -3,11 +3,13 @@ defmodule Sorrel.Umbrella.MixProject do
 
   def project do
     [
+      name: "Sorrel",
       apps_path: "apps",
       version: "0.1.0",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      aliases: aliases()
+      aliases: aliases(),
+      dialyzer: dialyzer()
     ]
   end
 
@@ -24,7 +26,11 @@ defmodule Sorrel.Umbrella.MixProject do
   # Dependencies listed here are available only for this project
   # and cannot be accessed from applications inside the apps/ folder.
   defp deps do
-    []
+    [
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.1", only: [:dev], runtime: false},
+      {:ex_doc, "~> 0.28", only: :dev, runtime: false}
+    ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
@@ -40,6 +46,15 @@ defmodule Sorrel.Umbrella.MixProject do
     [
       # run `mix setup` in all child apps
       setup: ["cmd mix setup"]
+    ]
+  end
+
+  # Dialyzer configuration
+  defp dialyzer do
+    [
+      plt_core_path: "priv/plts",
+      plt_file: {:no_warn, "priv/plts/sorrel.plt"},
+      ignore_warnings: ".dialyzer_ignore.exs"
     ]
   end
 end
