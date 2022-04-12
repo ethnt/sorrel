@@ -3,11 +3,13 @@ defmodule Sorrel.Umbrella.MixProject do
 
   def project do
     [
+      name: "Sorrel",
       apps_path: "apps",
       version: "0.1.0",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      aliases: aliases()
+      aliases: aliases(),
+      dialyzer: dialyzer()
     ]
   end
 
@@ -44,6 +46,15 @@ defmodule Sorrel.Umbrella.MixProject do
     [
       # run `mix setup` in all child apps
       setup: ["cmd mix setup"]
+    ]
+  end
+
+  # Dialyzer configuration
+  defp dialyzer do
+    [
+      plt_core_path: "priv/plts",
+      plt_file: {:no_warn, "priv/plts/sorrel.plt"},
+      ignore_warnings: ".dialyzer_ignore.exs"
     ]
   end
 end
