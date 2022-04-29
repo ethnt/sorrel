@@ -20,8 +20,8 @@ jobs:
       - uses: actions/checkout@v3
       - uses: erlef/setup-beam@v1
         with:
-          otp-version: '23.3'
-          elixir-version: '1.12'
+          otp-version: '24.1.6'
+          elixir-version: '1.13.3'
       - run: mix deps.get
       - run: mix setup
       - run: mix test
@@ -32,8 +32,8 @@ jobs:
       - uses: actions/checkout@v3
       - uses: erlef/setup-beam@v1
         with:
-          otp-version: '23.1'
-          elixir-version: '1.12'
+          otp-version: '24.1.6'
+          elixir-version: '1.13.3'
       - run: mix deps.get
       - run: mix credo --strict
 
@@ -43,8 +43,8 @@ jobs:
       - uses: actions/checkout@v3
       - uses: erlef/setup-beam@v1
         with:
-          otp-version: '23.1'
-          elixir-version: '1.12'
+          otp-version: '24.1.6'
+          elixir-version: '1.13.3'
       - run: mix deps.get
       - run: mix format --check-formatted
 
@@ -55,7 +55,7 @@ jobs:
       - uses: erlef/setup-beam@v1
         with:
           otp-version: '23.3'
-          elixir-version: '1.12'
+          elixir-version: '1.13.3'
       - run: mix deps.get
       - uses: actions/cache@v1
         id: plt-cache
